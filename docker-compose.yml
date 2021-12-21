@@ -1,0 +1,50 @@
+version: '3.5'
+
+services:
+  publisher:
+    build: ./publisher
+    restart: always
+    #command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm start'
+    depends_on:
+      - mysql
+    #command: ["./wait-for-it.sh", "mysql:3308", "--", "python", "app.py"]
+    volumes:
+      - ./publisher:/app
+    # links:
+    #   - mysql
+    ports:
+      - 8000:8000
+      - 3308
+    expose:
+     - 8000
+    networks:
+      - app-network
+  subscriber:
+    build: ./subscriber
+    volumes:
+      - ./subscriber:/app
+    ports:
+      - 9000:9000
+    expose:
+      - 9000
+    networks:
+      - app-network
+  mysql:
+    image: mariadb:latest
+    restart: always
+    volumes:
+      - "./.mysql:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'pwd'
+      MYSQL_DATABASE: 'subscription'
+      MYSQL_PASSWORD: 'pwd'
+      MYSQL_USER: admin
+    ports:
+      - 3308:3306
+    networks:
+      - app-network
+    expose:
+      - 3306
+networks:
+  app-network:
+    driver: bridge
