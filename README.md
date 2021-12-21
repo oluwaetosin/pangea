@@ -40,8 +40,7 @@
 5. to connect to the subscriber service use http://subscriber:9000 and not the localhost 
    hence for the subscriber service to receiver publish notification from the publisher
    it must be subscribed to using http://subscriber:9000 as the url
-6. Note that this architecture could be improved by pushing the request to a job queue but I settled for the a realtime handler 
-   because the task appear to indicate a synchronous approach
+6. Note that this architecture could be improved by pushing the request to a job queue but I settled for a realtime handler because the task appear to indicate a synchronous approach
 
 
 
