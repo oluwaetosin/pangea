@@ -2,3 +2,4 @@
 .mysql/*
 publisher/node_modules
 .mysql/
+.git
