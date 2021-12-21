@@ -1,5 +1,6 @@
 */node_modules
-.mysql/*
+**/node_modules
+.mysql/**
 publisher/node_modules
 .mysql/
 .git
