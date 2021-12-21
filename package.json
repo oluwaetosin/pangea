@@ -1,0 +1,22 @@
+{
+  "name": "take-home-asessment",
+  "version": "1.0.0",
+  "description": "Take home assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oluwaetosin/pangea.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Tosin Omotayo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oluwaetosin/pangea/issues"
+  },
+  "homepage": "https://github.com/oluwaetosin/pangea#readme"
+}
