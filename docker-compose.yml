@@ -7,9 +7,14 @@ services:
     #command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm start'
     depends_on:
       - mysql
+      - redis
     #command: ["./wait-for-it.sh", "mysql:3308", "--", "python", "app.py"]
     volumes:
       - ./publisher:/app
+    environment:
+      REDIS_HOST: 'redis'
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: 'password'
     # links:
     #   - mysql
     ports:
@@ -45,6 +50,17 @@ services:
       - app-network
     expose:
       - 3306
+  redis:
+    image: redis:latest
+    ports: 
+      - 6379:6379
+    expose:
+      - 6379
+    networks:
+      - app-network
+    command: redis-server --save 20 1 --loglevel warning --requirepass password
+    volumes:
+      - ./redis:/data
 networks:
   app-network:
     driver: bridge
